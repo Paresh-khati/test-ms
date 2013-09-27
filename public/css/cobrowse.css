@@ -1,0 +1,21 @@
+
+.lt-select-area {
+	position: absolute;
+	z-index: 100;
+    opacity: 0.4;
+    background: #fff49a;
+    filter:alpha(opacity=40);
+}
+
+.lt-select-box {
+    position: absolute;
+    z-index: 100;
+    outline: #385DC8 solid 2px;
+}
+
+.lt-select-close {
+    text-decoration: none;
+    color: #000000;
+    z-index: 101;
+    position: absolute;
+}

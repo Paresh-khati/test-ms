@@ -1,0 +1,413 @@
+@charset "utf-8";
+/* CSS Document */
+/**
+* @package Livetex Chat Window
+* @version 0.1
+* @author Andrey Garbuzov
+* @company Livetex chat & calls http://livetex.ru
+*/
+
+/**
+* Обнуление настроек
+* @section reset
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+button {
+	background-color: transparent;
+	border: 0;
+}
+.clear {
+    clear: both;    
+}
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.clearfix {
+    zoom: 1;     /* triggers hasLayout */
+    display: block;     /* resets display for IE/Win */
+}
+/* Окно приветствия
+*  @section Welcome window
+*/
+html {
+	overflow: hidden;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	line-height: 1.3em;
+	color: #fff;
+	overflow: hidden;
+}
+
+/*
+* @section Select Restyler
+*/
+.select-decor {
+	position: relative;
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
+	width: 100px;
+	height: 32px;
+	margin-top: 5px;
+	color: #333;
+	z-index: 10;
+	text-shadow: 0px 1px 1px #fff;
+	float: left;
+}
+.select-decor.error .select-header {
+	background-image: url(/img/embed-select-bg-error.png);
+}
+.select-popup {
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
+	width: 100px;
+	display: block;
+	cursor: pointer;
+	position: relative;
+}
+.select-popup .select-header {
+	width: 100px;
+	height: 25px;
+	background-image: url(/img/embed-chat/select-small.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+	padding: 4px;
+}
+.select-popup .select-header.noselect {
+	background-image: url(/img/embed-chat/noselect.png);
+}
+.select-popup .select-header .select-text {
+	height: 22px;
+	padding: 0 10px 0 5px;
+	line-height: 27px;
+	overflow: hidden;
+}
+.select-popup .select-content{
+	display: none;
+	margin-top: -1px;
+	width: 100px;
+}
+.select-popup .select-list {
+	padding: 0px;
+	margin: -1px 2px 0 2px;
+	overflow: auto;
+	max-height:200px;
+	background-color: #fff;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-right-color: #999;
+	border-bottom-color: #999;
+	border-left-color: #999;
+}
+
+.select-popup .select-list li {
+	line-height: 1.4em;
+	cursor: pointer;
+	font-size: 14px;
+	padding-top: 3px;
+	padding-right: 5px;
+	padding-bottom: 3px;
+	padding-left: 10px;
+	font-weight: normal;
+	text-shadow: none;
+}
+
+.select-popup .select-list li:hover {
+	background-color: #EFEFEF;
+}
+
+.select-popup .select-list li.selected {
+	background-color: #abdbf5;
+}
+
+.spinner {
+	background: #000;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+	position: absolute;
+	z-index: 100;
+	width: 100%;
+	height: 100%;
+	display: none;
+}
+.spinner img{
+	position: absolute;
+	z-index: 100;
+	left: 50%;
+	top: 50%;
+	margin-left: -15px;
+	margin-top: -15px;
+}
+.content {
+	padding: 12px;
+}
+.btn-close {
+	display: block;
+	position: absolute;
+	cursor: pointer;
+	right: 15px;
+	top: 10px;
+	width: 14px;
+	height: 14px;
+	background-image: url('/img/btn-close.png');
+}
+.operator-block {
+	display: block;
+	padding-bottom: 10px;
+}
+.operator-block .operator {
+	width: 67px;
+	height: 67px;
+	overflow: hidden;
+	border-radius: 7px;
+	border: 1px solid #ededed;
+	box-shadow: 0px 1px 0px rgba(255,255,255,0.5);
+	float: left;
+	margin-right: 10px;
+	display: none;
+}
+.operator-block .bubble-text {
+	text-shadow:0px 1px 1px #333;
+	margin-bottom: 10px;	
+	font-size: 12px;
+	display: none;
+}
+.operator-block.active .operator {
+	display: block;
+}
+.operator-block.active .bubble-text {
+	position: relative;
+	width: 220px;
+	float: left;
+	padding: 10px;
+	border-radius: 5px;
+	background-color: #fff;
+	background-color: rgba(255,255,255,0.8);
+	color: #222;
+	font-size: 12px;
+	box-shadow: 0px 1px 3px #333;
+	margin-left: 10px;
+	margin-bottom: 0;
+	text-shadow: none;
+	display: block;
+}
+.operator-block.active .bubble-text:before {
+	content: "";
+  position: absolute;
+ 	border-bottom: 10px solid transparent;
+  border-right: 10px solid #fff;
+  border-right: 10px solid rgba(255,255,255,0.8);
+  border-top: 10px solid transparent;
+  left: -10px;
+  top: 20%;
+}
+label {
+	display: block;
+	font-size: 13px;
+	font-weight: bold;
+	text-shadow:0px 1px 1px #333;
+	margin-bottom: 9px;
+}
+input {
+	width: 320px;
+	padding: 7px 5px;
+	outline: none;
+	background-color: #fff;
+	color: #111;
+	border: 1px solid #9c9c9c;
+  border-radius: 3px;
+  -webkit-box-shadow:  0px 1px 1px  rgba(255, 255, 255, 0.2);    
+  box-shadow:  0px 1px 1px  rgba(255, 255, 255, 0.2);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+.select-type input {	
+	width: 214px;
+	margin-top: 6px;
+	margin-left: 7px;
+}
+textarea {
+	width: 320px;
+	height: 73px;
+	padding: 5px;
+	margin-top: 3px;
+	outline: none;
+	background-color: #fff;
+	overflow-y: auto;
+	overflow-x: hidden;
+	resize: none;
+	color: #111;
+	border: 1px solid #9c9c9c;
+  border-radius: 3px;
+  -webkit-box-shadow:  0px 1px 1px  rgba(255, 255, 255, 0.2);    
+  box-shadow:  0px 1px 1px  rgba(255, 255, 255, 0.2);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+textarea.error, input.error {
+	box-shadow: 0px 0px 8px #ff0000;
+	color: #813535;
+	border: 1px solid #b50000;
+}
+.phone {
+	color:#999;
+}
+.btn-close {
+	display: block;
+	right: 10px;
+	top: 10px;
+	height: 14px;
+	width: 14px;
+	background: url(/img/btn-close.png) no-repeat left top;
+	cursor: pointer;
+}
+.btn-send {
+	display: block;
+	cursor: pointer;
+	width: 116px;
+	height: 38px;
+	background-image: url(/img/embed-chat/button.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+	float: right;
+	margin-right: 4px;
+}
+.btn-send:active {
+	background-position: left bottom;
+}
+
+.no-thanks {
+	float: right;
+	text-decoration:underline;
+	margin-right: 15px;
+	margin-top: 8px;
+	font-size: 12px;
+	cursor: pointer;
+}
+.footer-text {
+	color: #444;
+	font-size:12px;
+	position: absolute;
+	bottom: 5px;
+	left: 60px;
+	padding-bottom: 3px;
+}
+
+.footer-text a:visited, .footer-text a:link, .footer-text a:hover, .footer-text a:active {
+	color: #444;
+}
+
+.light .footer-text, .light .footer-text a{
+	color: #fff !important;		
+}
+
+
+/* Стартовое включение форм */
+#form-email, #form-phone, #form-select {
+	display: none;
+}
+
+.light, .light label {
+	color: #333;
+	text-shadow: none;
+}
+.submit_text {
+    display: none;
+}
+
+.submit_text_back {
+	position:relative;
+	width: 250px;
+	min-height:150px;
+	margin: 50px auto 0px;
+	padding: 20px 0px;
+}
+
+.submit_text_back_opac {
+	background-color:#333;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+	position:absolute;
+	top:0px;
+	bottom:0px;
+	left: 0px;
+	right:0px;
+	z-index: 1;
+  border-radius: 5px;
+}
+.submit_text .submit_text_tick {
+	background-image:url(../img/lid_tick.png);
+	background-position:center top;
+	background-repeat:no-repeat;
+	opacity: 1;
+	filter: alpha(opacity=100);
+	padding-top: 90px;
+	width: 250px;
+	text-align:center;
+	position:relative;
+	z-index: 100;
+}
+.submit_text .back-link {
+	cursor: pointer;
+  display: block;
+  font-weight: bold;
+  position: absolute;
+  bottom: 20px;
+  left: 10px;
+  text-shadow:0px 1px 1px #333;
+}
+.underline {
+	text-decoration: underline;
+}

@@ -1,0 +1,300 @@
+/* Call invites styles */
+.lt-calls {
+    position: fixed;
+    z-index: 9999;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    background-position: left top;
+    background-repeat: no-repeat;
+    /* Don't-show in old IE */
+    *display: none;
+}
+.lt-calls.lt-hidden {
+  display: none !important;
+}
+.lt-calls.lt-left {
+    left: 0;
+    top: 50%;
+}
+.lt-calls.lt-right {
+    right: 0;
+    top: 50%;
+}
+.lt-calls.lt-top {
+    top: 0;
+    left: 50%;
+}
+.lt-calls.lt-bottom {
+    bottom: 0;
+    left: 50%;
+}
+.lt-calls.lt-left.lt-small, .lt-calls.lt-right.lt-small {
+    width: 23px;
+    height: 118px;
+}
+.lt-calls.lt-top.lt-small, .lt-calls.lt-bottom.lt-small {
+    height: 23px;
+    width: 118px;
+}
+.lt-calls.lt-left.lt-big, .lt-calls.lt-right.lt-big {
+    width: 38px;
+    height: 174px;
+}
+.lt-calls.lt-top.lt-big, .lt-calls.lt-bottom.lt-big {
+    height: 38px;
+    width: 174px;
+}
+/* Left */
+.lt-calls.lt-left.lt-small.lt-blue {
+    background-image: url('../img/calls/left/small/blue.png');
+}
+.lt-calls.lt-left.lt-small.lt-green {
+    background-image: url('../img/calls/left/small/green.png');
+}
+.lt-calls.lt-left.lt-small.lt-black {
+    background-image: url('../img/calls/left/small/black.png');
+}
+.lt-calls.lt-left.lt-small.lt-gray {
+    background-image: url('../img/calls/left/small/gray.png');
+}
+.lt-calls.lt-left.lt-small.lt-orange {
+    background-image: url('../img/calls/left/small/orange.png');
+}
+.lt-calls.lt-left.lt-small.lt-pink {
+    background-image: url('../img/calls/left/small/pink.png');
+}
+.lt-calls.lt-left.lt-small.lt-purple {
+    background-image: url('../img/calls/left/small/purple.png');
+}
+.lt-calls.lt-left.lt-small.lt-red {
+    background-image: url('../img/calls/left/small/red.png');
+}
+.lt-calls.lt-left.lt-small.lt-white {
+    background-image: url('../img/calls/left/small/white.png');
+}
+.lt-calls.lt-left.lt-small.lt-yellow {
+    background-image: url('../img/calls/left/small/yellow.png');
+}
+
+.lt-calls.lt-left.lt-big.lt-blue {
+    background-image: url('../img/calls/left/big/blue.png');
+}
+.lt-calls.lt-left.lt-big.lt-green {
+    background-image: url('../img/calls/left/big/green.png');
+}
+.lt-calls.lt-left.lt-big.lt-black {
+    background-image: url('../img/calls/left/big/black.png');
+}
+.lt-calls.lt-left.lt-big.lt-gray {
+    background-image: url('../img/calls/left/big/gray.png');
+}
+.lt-calls.lt-left.lt-big.lt-orange {
+    background-image: url('../img/calls/left/big/orange.png');
+}
+.lt-calls.lt-left.lt-big.lt-pink {
+    background-image: url('../img/calls/left/big/pink.png');
+}
+.lt-calls.lt-left.lt-big.lt-purple {
+    background-image: url('../img/calls/left/big/purple.png');
+}
+.lt-calls.lt-left.lt-big.lt-red {
+    background-image: url('../img/calls/left/big/red.png');
+}
+.lt-calls.lt-left.lt-big.lt-white {
+    background-image: url('../img/calls/left/big/white.png');
+}
+.lt-calls.lt-left.lt-big.lt-yellow {
+    background-image: url('../img/calls/left/big/yellow.png');
+}
+
+/* Right */
+.lt-calls.lt-right.lt-small.lt-blue {
+    background-image: url('../img/calls/right/small/blue.png');
+}
+.lt-calls.lt-right.lt-small.lt-green {
+    background-image: url('../img/calls/right/small/green.png');
+}
+.lt-calls.lt-right.lt-small.lt-black {
+    background-image: url('../img/calls/right/small/black.png');
+}
+.lt-calls.lt-right.lt-small.lt-gray {
+    background-image: url('../img/calls/right/small/gray.png');
+}
+.lt-calls.lt-right.lt-small.lt-orange {
+    background-image: url('../img/calls/right/small/orange.png');
+}
+.lt-calls.lt-right.lt-small.lt-pink {
+    background-image: url('../img/calls/right/small/pink.png');
+}
+.lt-calls.lt-right.lt-small.lt-purple {
+    background-image: url('../img/calls/right/small/purple.png');
+}
+.lt-calls.lt-right.lt-small.lt-red {
+    background-image: url('../img/calls/right/small/red.png');
+}
+.lt-calls.lt-right.lt-small.lt-white {
+    background-image: url('../img/calls/right/small/white.png');
+}
+.lt-calls.lt-right.lt-small.lt-yellow {
+    background-image: url('../img/calls/right/small/yellow.png');
+}
+
+.lt-calls.lt-right.lt-big.lt-blue {
+    background-image: url('../img/calls/right/big/blue.png');
+}
+.lt-calls.lt-right.lt-big.lt-green {
+    background-image: url('../img/calls/right/big/green.png');
+}
+.lt-calls.lt-right.lt-big.lt-black {
+    background-image: url('../img/calls/right/big/black.png');
+}
+.lt-calls.lt-right.lt-big.lt-gray {
+    background-image: url('../img/calls/right/big/gray.png');
+}
+.lt-calls.lt-right.lt-big.lt-orange {
+    background-image: url('../img/calls/right/big/orange.png');
+}
+.lt-calls.lt-right.lt-big.lt-pink {
+    background-image: url('../img/calls/right/big/pink.png');
+}
+.lt-calls.lt-right.lt-big.lt-purple {
+    background-image: url('../img/calls/right/big/purple.png');
+}
+.lt-calls.lt-right.lt-big.lt-red {
+    background-image: url('../img/calls/right/big/red.png');
+}
+.lt-calls.lt-right.lt-big.lt-white {
+    background-image: url('../img/calls/right/big/white.png');
+}
+.lt-calls.lt-right.lt-big.lt-yellow {
+    background-image: url('../img/calls/right/big/yellow.png');
+}
+
+/* Top */
+.lt-calls.lt-top.lt-small.lt-blue {
+    background-image: url('../img/calls/top/small/blue.png');
+}
+.lt-calls.lt-top.lt-small.lt-green {
+    background-image: url('../img/calls/top/small/green.png');
+}
+.lt-calls.lt-top.lt-small.lt-black {
+    background-image: url('../img/calls/top/small/black.png');
+}
+.lt-calls.lt-top.lt-small.lt-gray {
+    background-image: url('../img/calls/top/small/gray.png');
+}
+.lt-calls.lt-top.lt-small.lt-orange {
+    background-image: url('../img/calls/top/small/orange.png');
+}
+.lt-calls.lt-top.lt-small.lt-pink {
+    background-image: url('../img/calls/top/small/pink.png');
+}
+.lt-calls.lt-top.lt-small.lt-purple {
+    background-image: url('../img/calls/top/small/purple.png');
+}
+.lt-calls.lt-top.lt-small.lt-red {
+    background-image: url('../img/calls/top/small/red.png');
+}
+.lt-calls.lt-top.lt-small.lt-white {
+    background-image: url('../img/calls/top/small/white.png');
+}
+.lt-calls.lt-top.lt-small.lt-yellow {
+    background-image: url('../img/calls/top/small/yellow.png');
+}
+
+.lt-calls.lt-top.lt-big.lt-blue {
+    background-image: url('../img/calls/top/big/blue.png');
+}
+.lt-calls.lt-top.lt-big.lt-green {
+    background-image: url('../img/calls/top/big/green.png');
+}
+.lt-calls.lt-top.lt-big.lt-black {
+    background-image: url('../img/calls/top/big/black.png');
+}
+.lt-calls.lt-top.lt-big.lt-gray {
+    background-image: url('../img/calls/top/big/gray.png');
+}
+.lt-calls.lt-top.lt-big.lt-orange {
+    background-image: url('../img/calls/top/big/orange.png');
+}
+.lt-calls.lt-top.lt-big.lt-pink {
+    background-image: url('../img/calls/top/big/pink.png');
+}
+.lt-calls.lt-top.lt-big.lt-purple {
+    background-image: url('../img/calls/top/big/purple.png');
+}
+.lt-calls.lt-top.lt-big.lt-red {
+    background-image: url('../img/calls/top/big/red.png');
+}
+.lt-calls.lt-top.lt-big.lt-white {
+    background-image: url('../img/calls/top/big/white.png');
+}
+.lt-calls.lt-top.lt-big.lt-yellow {
+    background-image: url('../img/calls/top/big/yellow.png');
+}
+
+/* Bottom */
+.lt-calls.lt-bottom.lt-small.lt-blue {
+    background-image: url('../img/calls/bottom/small/blue.png');
+}
+.lt-calls.lt-bottom.lt-small.lt-green {
+    background-image: url('../img/calls/bottom/small/green.png');
+}
+.lt-calls.lt-bottom.lt-small.lt-black {
+    background-image: url('../img/calls/bottom/small/black.png');
+}
+.lt-calls.lt-bottom.lt-small.lt-gray {
+    background-image: url('../img/calls/bottom/small/gray.png');
+}
+.lt-calls.lt-bottom.lt-small.lt-orange {
+    background-image: url('../img/calls/bottom/small/orange.png');
+}
+.lt-calls.lt-bottom.lt-small.lt-pink {
+    background-image: url('../img/calls/bottom/small/pink.png');
+}
+.lt-calls.lt-bottom.lt-small.lt-purple {
+    background-image: url('../img/calls/bottom/small/purple.png');
+}
+.lt-calls.lt-bottom.lt-small.lt-red {
+    background-image: url('../img/calls/bottom/small/red.png');
+}
+.lt-calls.lt-bottom.lt-small.lt-white {
+    background-image: url('../img/calls/bottom/small/white.png');
+}
+.lt-calls.lt-bottom.lt-small.lt-yellow {
+    background-image: url('../img/calls/bottom/small/yellow.png');
+}
+
+.lt-calls.lt-bottom.lt-big.lt-blue {
+    background-image: url('../img/calls/bottom/big/blue.png');
+}
+.lt-calls.lt-bottom.lt-big.lt-green {
+    background-image: url('../img/calls/bottom/big/green.png');
+}
+.lt-calls.lt-bottom.lt-big.lt-black {
+    background-image: url('../img/calls/bottom/big/black.png');
+}
+.lt-calls.lt-bottom.lt-big.lt-gray {
+    background-image: url('../img/calls/bottom/big/gray.png');
+}
+.lt-calls.lt-bottom.lt-big.lt-orange {
+    background-image: url('../img/calls/bottom/big/orange.png');
+}
+.lt-calls.lt-bottom.lt-big.lt-pink {
+    background-image: url('../img/calls/bottom/big/pink.png');
+}
+.lt-calls.lt-bottom.lt-big.lt-purple {
+    background-image: url('../img/calls/bottom/big/purple.png');
+}
+.lt-calls.lt-bottom.lt-big.lt-red {
+    background-image: url('../img/calls/bottom/big/red.png');
+}
+.lt-calls.lt-bottom.lt-big.lt-white {
+    background-image: url('../img/calls/bottom/big/white.png');
+}
+.lt-calls.lt-bottom.lt-big.lt-yellow {
+    background-image: url('../img/calls/bottom/big/yellow.png');
+}

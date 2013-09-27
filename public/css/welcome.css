@@ -1,0 +1,430 @@
+@charset "utf-8";
+/* CSS Document */
+/** 
+* @package Livetex Chat Window
+* @version 0.1
+* @author Andrey Garbuzov
+* @company Livetex chat & calls http://livetex.ru
+*/
+
+/**
+* Обнуление настроек
+* @section reset
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+button {
+	background-color: transparent;
+	border: 0;
+}
+/* Окно приветствия 
+*  @section Welcome window
+*/
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	line-height: 1.3em;
+	color: #0b3f5f;	
+	overflow: hidden;
+	position: relative;
+	width: 448px;
+}
+
+/*
+* @section Select Restyler
+*/
+.select-decor {
+	position: relative;
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
+	width: 408px;
+	height: 42px;
+	color: #000;
+	z-index: 10;
+}
+
+.select-decor.error .select-header {
+	background-image: url(/img/select-bg-error.png);
+}
+.select-popup {
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
+	width: 408px;
+	display: block;
+	cursor: pointer;
+	position: relative;
+}
+
+.select-popup .select-header {
+	width: 400px;
+	height: 25px;
+	background-image: url(/img/select-bg.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+	padding: 4px;
+	margin-top: 5px;	
+}
+
+.select-popup .select-header.noselect {
+	width: 400px;
+	height: 25px;
+	background-image: url(/img/select-bg-noselect.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+	padding: 4px;
+	margin-top: 5px;	
+}
+
+
+.select-popup .select-header .select-text {
+	height: 22px;
+	padding: 0 10px 0 5px;
+	line-height: 27px;
+	overflow: hidden;
+}
+.select-popup .select-content{
+	display: none;
+	margin-top: -1px;
+}
+.select-popup .select-list {
+	padding: 0px;
+	margin: -1px 2px 0 2px;
+	overflow: auto;
+	max-height:200px;
+	background-color: #fff;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-right-color: #999;
+	border-bottom-color: #999;
+	border-left-color: #999;
+}
+
+.select-popup .select-list li {
+	line-height: 1.4em;
+	cursor: pointer;
+	font-size: 14px;
+	padding-top: 3px;
+	padding-right: 5px;
+	padding-bottom: 3px;
+	padding-left: 10px;
+}
+
+.select-popup .select-list li:hover {
+	background-color: #EFEFEF;
+}
+
+.select-popup .select-list li.selected {
+	background-color: #abdbf5;
+}
+
+.background {
+	background-image: url('/img/chat-bg.jpg');
+	background-repeat: no-repeat;
+	background-position: left bottom;
+	/*background-color: #b8dcf2;*/
+	height: 605px;
+	width: 448px;	
+	margin: auto;
+	position: relative;
+}
+
+.background.offline {
+	background-image: url('/img/chat-bg-offline.jpg');
+	background-color: #666;
+}
+
+.spinner {
+	background: #000;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+	position: absolute;
+	z-index: 100;
+	width: 100%;
+	height: 100%;
+	display: none;	
+}
+.spinner img{
+	position: absolute;
+	z-index: 100;
+	left: 50%;
+	top: 50%;
+	margin-left: -15px;
+	margin-top: -15px;	
+}
+
+.banner {
+	display: none;
+	width: 448px;
+	height: 82px;
+	overflow: hidden;
+	text-align: center;
+}
+
+.content, .group_preselect {
+	padding: 10px 20px 20px 20px;
+}
+.group_preselect{
+    padding-top: 100px;
+}
+
+.info-text {
+	font-style: italic;
+	text-shadow:0px 1px 1px #ffffff;
+	margin-bottom: 5px;
+	overflow: hidden;
+}
+
+.warning{
+	display: none;
+	background-image: url(/img/warning-bg-bottom.png);
+	background-repeat: no-repeat;
+	background-position: left bottom;
+	width: 407px;
+	padding-bottom: 8px;
+	margin-right: auto;
+	margin-left: auto;
+}
+.warning > div{
+	background-image: url(/img/warning-bg-top.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+	padding: 10px 10px 2px;
+	text-align: center;
+	font-style: italic;
+	color: #000;
+}
+.hint {
+	font-size: 11px;
+	color: #eee;
+	padding-left: 8px;
+}
+
+label {
+	display: block;
+	font-weight: bold;
+	padding-top: 20px;
+	text-shadow:0px 1px 1px #f6f6f6;
+}
+
+.input-text {
+	width: 400px;
+	height: 27px;
+	background-image: url(/img/input-bg.png);
+	background-repeat: no-repeat;
+	background-position: left top;	
+	padding: 4px;
+	margin-top: 5px;
+}
+
+.input-text.error {
+	background-image: url(/img/input-bg-error.png);
+}
+.input-text.error input {
+	background-color: #f7bbbb;
+}
+
+.input-text input {
+	line-height: 25px;
+	font-size: 16px;
+	width: 390px;
+	height: 25px;
+	padding: 0 3px;
+	margin: 0;
+	border: none;
+	outline: none;
+	background-color: #f6f6f6;	
+	color: #000;
+}
+
+.input-text #name {
+	color: #999;
+}
+
+.input-error {
+	color: red;
+	padding: 0 0 10px 0;
+	font-size: 12px;
+	text-shadow: 0px 1px 2px #333;
+}
+
+.input-textarea {
+	background-image: url(/img/textarea-bg.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+	height: 93px;
+	width: 402px;
+	padding: 3px;
+	margin-top: 5px;
+}
+
+.input-textarea textarea {
+	width: 398px;
+	height: 89px;	
+	border: none;
+	outline: none;
+	background-color: #f6f6f6;
+	overflow-y: auto;
+	overflow-x: hidden;
+	resize: none;
+}
+
+
+.btn-send {
+	display: block;
+	cursor: pointer;
+	width: 135px;
+	height: 39px;
+	text-indent: -2000px;
+	background-image: url(/img/btn-send-green.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+	float: right;
+	margin-top: 10px;	
+}
+
+
+.btn-send:active {
+	background-position: left bottom;
+}
+
+
+a.back-link {
+	cursor: pointer;
+	display: none;
+	font-weight: bold;
+	margin-top:10px;
+	float: left;
+	text-shadow:0px 1px 1px #f6f6f6;
+}
+
+.underline {
+	text-decoration: underline;	
+}
+
+.footer-text {
+	color: #000;
+	font-size:12px;
+	position: absolute;
+	bottom: 0;
+	left: 10px;
+	padding-bottom: 5px;
+}
+
+.footer-text a:visited, .footer-text a:link, .footer-text a:hover, .footer-text a:active {
+	color: #5f5f5f;
+}
+
+.required {
+	position: absolute;
+	bottom: 0;
+	right: 10px;
+	text-align: right;
+	padding-bottom: 5px;
+	color: #000;
+	font-size:10px;
+	display: none;
+}
+.required.active {
+	display: block;
+}
+
+#emailinput {
+	display: none;	
+}
+
+/*
+* @section Dark Style
+*/
+
+.dark {
+	color: #fff !important;	
+}
+
+.dark .info-text, .dark label {
+	color: #fff !important;	
+	text-shadow:0px 1px 0px #666 !important;	
+}
+
+.dark .footer-text, .dark .footer-text a, .dark .required {
+	color: #fff !important;	
+}
+
+.dark .hint {
+	color: #eee;
+	text-shadow: 0px 1px 0px #111 !important;
+}
+
+/*
+* @section Light Style
+*/
+
+.light {
+	color: #1F1F1F;
+}
+
+.light .info-text, .light label {
+	text-shadow:0px 1px 0px #CCC !important;	
+}
+
+.light .footer-text, .light .footer-text a, .light .required {
+	color: #1F1F1F !important;	
+}
+
+.light  .hint {
+	color: #505050 !important;
+	text-shadow: 0px 1px 0px #eee !important;
+}
+
+.offline #emailinput {
+	display: block;	
+}
+
+.offline #groupselect {
+ 	display: none;
+}
+

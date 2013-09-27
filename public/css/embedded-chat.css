@@ -1,0 +1,692 @@
+@charset "utf-8";
+/* CSS Document */
+/** 
+* @package Livetex Chat Window
+* @version 0.1
+* @author Andrey Garbuzov
+* @company Livetex chat & calls http://livetex.ru
+*/
+
+/**
+* Обнуление настроек
+* @section reset
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+button {
+    /*background-color: transparent;
+    border: 0;*/
+}
+.clear {
+    clear: both;    
+}
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.clearfix {
+    zoom: 1;     /* triggers hasLayout */
+    display: block;     /* resets display for IE/Win */
+}
+body {
+    margin: auto;
+    height: 334px;
+    width: 310px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 1.3em;
+    color: #0b3f5f;
+    overflow: hidden;
+    position: relative;
+}
+.spinner {
+    background: #000;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+    position: absolute;
+    z-index: 400;
+    width: 100%;
+    height: 100%;
+    display: none;
+    top: 0px;
+}
+.spinner img {
+    position: absolute;
+    z-index: 100;
+    left: 50%;
+    top: 50%;
+    margin-left: -15px;
+    margin-top: -15px;  
+}
+.chat-header {
+    padding: 8px 8px 5px 8px;
+    position: relative;
+}   
+.chat-header:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.chat-header .avatar {
+    height: 52px;
+    width: 45px;
+    float: left;
+    box-shadow: 0px 1px 3px #333;
+}
+.chat-header .avatar img{
+    width: 45px;
+    height: 52px;   
+}
+.chat-header .header-text {
+    margin-left: 60px;  
+    white-space: nowrap;
+    overflow: hidden;
+}
+.operator-name {
+    font-size: 16px;
+    font-weight: bold;
+    font-family: Helvetica, sans-serif;
+    color: #FFF;
+    line-height: 1em;
+    text-shadow:0px 1px 1px #666;
+}
+.operator-group {
+    font-size: 14px;
+    font-family: Helvetica, sans-serif;
+    color: #FFF;
+    line-height: 1.4em;
+    text-shadow:0px 1px 1px #666;  
+    display: inline-block;
+    *zoom:1;
+    *display: inline;
+    height: 19px;
+}
+.btn-close {
+    display: block;
+    position: absolute;
+    cursor: pointer;
+    right: 10px;
+    top: 10px;
+    width: 14px;
+    height: 14px;
+    background-image: url('/img/embed-chat/btn-close.png');
+}
+.btn-expand {
+    display: block;
+    position: absolute;
+    cursor: pointer;
+    right: 30px;
+    top: 10px;
+    width: 14px;
+    height: 14px;
+    background-image: url('/img/embed-chat/btn-expand.png');
+}
+.chat-header .chat-menu {
+    margin-top: 5px;
+    display: block;
+    margin-left: 60px;
+}
+.chat-header .chat-menu li {
+    float: left;
+    height: 18px;
+}
+.chat-header .chat-menu li a {
+    color: #FFF;
+    height: 19px;
+    width: 18px;
+    display: inline-block;
+    zoom:1;
+    *display: inline;   
+    margin-right: 5px;
+    cursor: pointer;
+}
+.btn-call {
+    background-image: url('/img/embed-chat/btn-call.png');
+    background-repeat: no-repeat;
+    background-position: left top;
+    height: 28px;
+    width: 92px;
+    display: block;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 30px;
+}
+.chat-header .chat-menu .btn-complain {
+    background-image: url('/img/embed-chat/btn-complain.png');
+    background-repeat: no-repeat;
+    background-position: left top; 
+    width: 16px;     
+}
+.chat-header .chat-menu .btn-sendmail {
+    background-image: url('/img/embed-chat/btn-sendmail.png');
+    background-repeat: no-repeat;
+    background-position: left top;  
+    width: 20px;  
+    margin-top: 1px;
+}
+.chat-header .chat-menu .btn-print {
+    background-image: url('/img/embed-chat/btn-print.png');
+    background-repeat: no-repeat;
+    background-position: left top;  
+}
+.chat-bg {
+    background-image: url('/img/embed-chat/chat-bg.png');
+    margin: 0px 10px 0px;
+    border-radius: 3px;
+    box-shadow: 0px 1px 1px #999;
+} 
+
+.rate {
+    display: none;
+    background-color: #FFF;
+    padding-left: 10px;
+    box-shadow: 0px 1px 3px #999 inset;
+    color: #666;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 32px;
+    font-family: Helvetica, sans-serif;
+    position: relative;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom: 1px solid #bebebe;
+}
+.rate .btn-rate {
+    background-image: url('/img/embed-chat/btn-rate.png');
+    background-repeat: no-repeat;
+    background-position: left top;
+    cursor: pointer;
+    height: 22px;
+    width: 88px;
+    position: absolute;
+    right: 7px;
+    top: 5px;
+}
+.rate .btn-useless {
+    display: inline-block;
+    height: 22px;
+    width: 44px;
+    cursor: pointer;
+    zoom: 1;
+    *display: inline;
+}
+.rate .btn-usefull {
+    display: inline-block;
+    height: 22px;
+    width: 44px;
+    cursor: pointer;
+    zoom: 1;
+    *display: inline;
+}
+
+.chat-content {
+    position: relative;
+    z-index: 1;
+    overflow-y: scroll;
+    height: 192px;
+    overflow-x: hidden;
+    padding-bottom: 5px;  
+    padding-top: 5px; 
+}
+
+ /* Let's get this party started */
+::-webkit-scrollbar {
+    width: 5px;
+}
+ 
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
+    border-radius: 5px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    background: rgba(159,159,159,0.8); 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(159,159,159,0.4); 
+} 
+
+.client-msg {
+    clear: left;
+    margin-bottom: 5px;
+    position: relative;
+    width: 290px;
+}
+.client-msg .msg {
+    float: left;
+    width: 210px;
+    border: 1px solid #ccc;
+    background-color: #efefef;
+    border-radius: 5px;
+    color: #363636;
+    font-size: 12px;
+    padding: 7px;
+    margin-left: 13px;
+    box-shadow: 0px 1px 5px #ccc;
+    overflow: hidden;
+    background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(47%,rgba(246,246,246,1)), color-stop(100%,rgba(237,237,237,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* W3C */   
+}
+.client-msg .bubble {
+    width: 12px;
+    height: 11px;
+    background: url('/img/embed-chat/client-bubble.png') no-repeat left top;
+    position: absolute;
+    left: 2px;
+    bottom: 10px;
+}
+.client-msg .time {
+    float: left;
+    margin-left: 5px;
+    color: #636363;
+    font-size: 11px;
+}
+
+.operator-msg {
+    clear: left;
+    margin-bottom: 5px;
+    position: relative;
+    width: 275px;
+}
+.operator-msg .msg {
+    margin-left: 36px;
+    width: 212px;    
+    border: 1px solid #8cb0d9;
+    background-color: #D8E4F3;
+    border-radius: 5px;
+    color: #363636;
+    font-size: 12px;
+    padding: 7px;
+    box-shadow: 0px 1px 5px #ccc;
+    overflow: hidden;
+    background: -moz-linear-gradient(top, rgba(251,252,254,1) 0%, rgba(246,246,246,1) 47%, rgba(216,228,243,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(251,252,254,1)), color-stop(47%,rgba(246,246,246,1)), color-stop(100%,rgba(216,228,243,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(251,252,254,1) 0%,rgba(246,246,246,1) 47%,rgba(216,228,243,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(251,252,254,1) 0%,rgba(246,246,246,1) 47%,rgba(216,228,243,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(251,252,254,1) 0%,rgba(246,246,246,1) 47%,rgba(216,228,243,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(251,252,254,1) 0%,rgba(246,246,246,1) 47%,rgba(216,228,243,1) 100%); /* W3C */   
+}
+.operator-msg .bubble {
+    width: 12px;
+    height: 11px;
+    background: url('/img/embed-chat/operator-bubble.png') no-repeat left top;
+    position: absolute;
+    right: 1px;
+    bottom: 10px;
+}
+.operator-msg .time {
+    float: left;
+    margin-left: 4px;
+    color: #636363;
+    font-size: 11px;
+}
+
+.typing {
+    width: 18px;
+    height: 13px;
+    background: url('/img/embed-chat/typing.gif') no-repeat left top;
+    float: right;
+    margin-right: 18px;
+    padding-bottom: 10px;
+}
+
+.system-msg { 
+    margin: 5px;
+    font-size: 10px;
+    text-align: center;
+    color: #363636;
+    line-height: 14px;
+}
+.progress {
+    border-radius: 5px;
+    margin-left: 3px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    font-size: 10px;
+    text-align: center;
+    text-shadow: 0 1px 1px #FFF;
+    position: relative;
+}
+.progress-bar-bg {
+    width: 260px;
+    height:10px;
+    background: url('/img/embed-chat/progress-bar-bg.png') no-repeat left top;
+    margin: 2px auto;
+}
+.progress-bar-r {
+    width: 257px;
+    height: 10px;
+    background: url('/img/progress-bar-r.png') no-repeat right top;
+    padding-right: 3px;
+    float: left;
+}
+.progress-bar-l {
+    width: 100%;
+    height: 10px;
+    background: url('/img/progress-bar-l.png') no-repeat left top;
+}
+.progress .send-op {
+    color: #333;
+}
+
+.history {
+    margin-bottom: 5px;
+    text-align: center;
+}
+.history .last-chat {
+    font-size: 10px;
+    line-height: 20px;
+    color: #363636;
+}
+.history .horline {
+    height: 1px;
+    width: 60px;
+    margin: auto;
+    clear: both;
+    background-color: #aaa;
+    box-shadow: 0px 1px 0px #fff;
+}
+.copyright {
+    text-align: right;
+    font-size: 9px;
+    color: #fff;
+    margin-right: 12px;
+}
+.copyright a {
+    color: #fff;
+    text-decoration: underline;
+}
+.chat-input {
+    margin-left: 8px;
+    line-height: 27px;
+    font-size: 14px;
+    width: 239px;
+    float: left;
+    height: 27px;
+    padding: 3px 5px;
+    border: none;
+    outline: none;
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #999;
+    border-radius: 3px;
+    -webkit-box-shadow:  0px 1px 1px  rgba(255, 255, 255, 0.5);    
+    box-shadow:  0px 1px 1px  rgba(255, 255, 255, 0.5);
+    /*background: #fff url('/img/embed-chat/ctrl.png') no-repeat 250px center;*/
+}
+input::-webkit-input-placeholder {
+    color:    #999;
+}
+input:-moz-placeholder {
+    color:    #999;
+}
+input:-ms-input-placeholder {
+    color:    #999;
+}
+.btn-send, .btn-send:link, .btn-send:visited {
+    display: block;
+    cursor: pointer;
+    width: 37px;
+    height: 36px;
+    background-image: url('/img/embed-chat/btn-send.png');
+    background-repeat: no-repeat;
+    background-position: left top;
+    position: absolute;
+    right: 10px;
+    bottom: 7px;
+    outline: none;
+}
+.btn-send:active {
+    bottom: 6px;
+}
+.hint {
+    position: absolute;
+    right: 70px;
+    bottom: -8px;
+    font-size: 10px;
+    color: #fff;
+    text-shadow: 0px 1px 2px #666;
+}
+.send-desc {
+    font-size: 11px;
+    color: #FFF;
+    float: right;
+    clear: right;
+    margin-right: 20px;
+    display: block;
+    position: relative;
+}
+.footer-text {
+    color: #fff;
+    font-size:12px;
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    padding-bottom: 5px;
+}
+.footer-text a:visited, .footer-text a:link, .footer-text a:hover, .footer-text a:active {
+    color: #a7edff;
+}
+
+/*
+* @section Странички жалоб 
+*/
+.embedded-complain {
+    display: none;
+}
+.embedded-complain .content {
+    padding: 8px;    
+}
+.embedded-complain label {
+    display: block;
+    font-weight: bold;
+    margin-top: 3px;
+    text-shadow:0px 1px 1px #f6f6f6;
+    color: #fff;
+}
+.embedded-complain textarea {
+    border: 1px solid #666;
+    border-radius: 5px;
+    padding: 5px;
+    height: 230px;
+    width: 278px;
+    resize: none;
+    margin-top: 10px;
+    -webkit-box-shadow:  0px 1px 1px  rgba(255, 255, 255, 0.5);    
+    box-shadow:  0px 1px 1px  rgba(255, 255, 255, 0.5);
+    overflow: hidden;
+    outline: none;
+    background-color: #fff; 
+}
+.embedded-complain .back-link {
+    cursor: pointer;
+    display: block;
+    font-weight: bold;
+    margin-top: 15px;
+    float: left;
+    text-shadow:0px 1px 1px #f6f6f6;
+}
+.embedded-complain .underline {
+    text-decoration: underline; 
+}
+.embedded-complain .btn-send {
+    display: block;
+    cursor: pointer;
+    width: 135px;
+    height: 39px;
+    background-image: url('/img/btn-send-green.png');
+    background-repeat: no-repeat;
+    background-position: left top;
+    position: absolute;
+    right: 10px;
+    bottom: 8px;
+    outline: none;
+}
+.embedded-complain .btn-send:active {
+    background-position: left bottom;
+    bottom: 7px;
+}
+.complain-result {
+    display: none;
+}
+.complain-result label {
+    text-align: center;
+    margin-top: 130px;
+    margin-bottom: 90px;
+}
+/**
+* @section Отправка чата на почту
+*/
+.embedded-sendon {
+    display: none;
+}
+.embedded-sendon .content {
+    padding: 8px;    
+}
+.embedded-sendon label {
+    display: block;
+    font-weight: bold;
+    margin-top: 3px;
+    text-shadow:0px 1px 1px #f6f6f6;
+    color: #fff;
+    margin-bottom: 10px;
+}
+.embedded-sendon input {
+    line-height: 25px;
+    font-size: 16px;
+    width: 282px;
+    height: 25px;
+    padding: 3px;
+    margin: 0;
+    border: none;
+    outline: none;
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #999;
+    border-radius: 3px;
+    -webkit-box-shadow:  0px 1px 1px  rgba(255, 255, 255, 0.5);    
+    box-shadow:  0px 1px 1px  rgba(255, 255, 255, 0.5);
+}
+.embedded-sendon .btn-send {
+    display: block;
+    cursor: pointer;
+    width: 135px;
+    height: 39px;
+    background-image: url('/img/btn-send-green.png');
+    background-repeat: no-repeat;
+    background-position: left top;
+    position: absolute;
+    right: 10px;
+    bottom: 8px;
+    outline: none;
+}
+.embedded-sendon .btn-send:active {
+    background-position: left bottom;
+    bottom: 7px;
+}
+.embedded-sendon .back-link {
+    cursor: pointer;
+    display: block;
+    font-weight: bold;
+    margin-top: 206px;
+    float: left;
+    text-shadow:0px 1px 1px #f6f6f6;
+}
+.embedded-sendon .underline {
+    text-decoration: underline; 
+}
+.sendon-result {
+    display: none;
+}
+.sendon-result label {
+    text-align: center;
+    margin-top: 130px;
+    margin-bottom: 90px;
+}
+.sendon-result .back-link {
+    margin-top: 33px;
+}
+/**
+* @section Light & Dark versions
+*/
+
+.light, .light .operator-name, .light .operator-group, .light .btn-complain, .light .btn-sendmail, .light .btn-print, .light .send-desc {
+    color: #1F1F1F !important;
+    text-shadow: none;
+}
+.light .hint {
+    color: #1F1F1F !important;
+    /*text-shadow:0px 1px 0px #CCC !important;   */
+}
+.light .info-text,  .light label,  .light .back-link,  .light .operator-name, .light .operator-group, .light .send-desc {
+    /*text-shadow:0px 1px 0px #CCC;   */
+    color: #1F1F1F !important;
+}
+.light .footer-text,  .light .footer-text a {
+    color: #1F1F1F !important;
+}
+
+.dark,.dark .operator-name {
+    color: #fff;    
+}
+.dark .info-text,.dark label,  .dark .back-link {
+    text-shadow:0px 1px 1px #666;   
+}
+ .dark .footer-text,  .dark .footer-text a {
+    color: #fff;    
+}

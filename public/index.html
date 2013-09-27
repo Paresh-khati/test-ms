@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Livetex Web Client</title>
+  </head>
+  <body>
+  <div id="liveTexButton_209"></div><br/>
+  <div id="liveTexButton_201"></div><br/>
+  <div id="liveTexButton_202"></div><br/>
+  <div id="liveTexButton_561"></div><br/>
+  <script type="text/javascript">
+  window.LTX_URL = '//livetex.local/';
+  var liveTex = true,
+    liveTexID = 10000103,
+    liveTex_object = true;
+
+  (function() {
+  var lt = document.createElement('script');
+  lt.type ='text/javascript';
+  lt.async = true;
+  lt.src = '//livetex.local/js/client.js';
+  var sc = document.getElementsByTagName('script')[0];
+  if ( sc ) sc.parentNode.insertBefore(lt, sc);
+  else document.documentElement.firstChild.appendChild(lt);
+  })();
+  </script>
+  </body>
+</html>
